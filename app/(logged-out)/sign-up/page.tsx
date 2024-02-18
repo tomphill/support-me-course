@@ -39,6 +39,7 @@ import { CalendarIcon, PersonStandingIcon } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
 
 const formSchema = z
   .object({
@@ -97,6 +98,8 @@ const formSchema = z
   });
 
 export default function SignupPage() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -104,8 +107,9 @@ export default function SignupPage() {
     },
   });
 
-  const handleSubmit = () => {
-    console.log("login validation passed");
+  const handleSubmit = (data: z.infer<typeof formSchema>) => {
+    console.log("login validation passed: ", data);
+    router.push("/dashboard");
   };
 
   const accountType = form.watch("accountType");
