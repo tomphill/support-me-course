@@ -104,6 +104,9 @@ export default function SignupPage() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
+      password: "",
+      passwordConfirm: "",
+      companyName: "",
     },
   });
 
