@@ -90,10 +90,6 @@ export default function WorkLocationTrends() {
               return [value, "Work from office"];
             }
           }}
-          content={() => {
-            //console.log(args);
-            return <div>hey guys</div>;
-          }}
           labelClassName="font-bold"
           wrapperClassName="!text-sm dark:!bg-black rounded-md dark:!border-border"
         />

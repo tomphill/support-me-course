@@ -195,6 +195,7 @@ export default function SignupPage() {
                             min={0}
                             placeholder="Employees"
                             {...field}
+                            value={field.value ?? ""}
                           />
                         </FormControl>
                         <FormMessage />
