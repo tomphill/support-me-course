@@ -13,8 +13,6 @@ export default function DashboardLayout({
 }) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
-  // so if we go here then we can actually see what's happening with it all
-
   return (
     <div className="md:grid md:grid-cols-[250px_1fr] h-screen">
       <MainMenu className="hidden md:flex" />
