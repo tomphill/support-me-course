@@ -47,9 +47,11 @@ const formSchema = z
     accountType: z.enum(["personal", "company"]),
     companyName: z.string().optional(),
     numberOfEmployees: z.coerce.number().optional(),
-    acceptTerms: z.boolean({
-      required_error: "You must accept the terms and conditions",
-    }),
+    acceptTerms: z
+      .boolean({
+        required_error: "You must accept the terms and conditions",
+      })
+      .refine((checked) => checked, "You must accept the terms and conditions"),
     dob: z.date().refine((date) => {
       const today = new Date();
       const eighteedYearsAgo = new Date(
