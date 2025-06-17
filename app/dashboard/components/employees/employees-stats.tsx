@@ -74,7 +74,7 @@ export default function EmployeesStats() {
             )}
           </CardFooter>
         </Card>
-        <Card className="border-pink-500 flex flex-col">
+        <Card className="border-primary flex flex-col">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">Employee of the month</CardTitle>
           </CardHeader>
@@ -86,7 +86,7 @@ export default function EmployeesStats() {
             <span className="text-2xl">Colin Murray!</span>
           </CardContent>
           <CardFooter className="flex gap-2 items-center text-xs text-muted-foreground mt-auto">
-            <PartyPopperIcon className="text-pink-500" />
+            <PartyPopperIcon className="text-primary" />
             <span>Congratulations, Colin!</span>
           </CardFooter>
         </Card>
