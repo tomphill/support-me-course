@@ -209,95 +209,51 @@ export default function SignupPage() {
               <FormField
                 control={form.control}
                 name="dob"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col pt-2">
-                    <FormLabel>Date of birth</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            variant="outline"
-                            className="normal-case flex justify-between pr-1"
-                          >
-                            {!!field.value ? (
-                              format(field.value, "PPP")
-                            ) : (
-                              <span>Pick a date</span>
-                            )}
-                            <CalendarIcon />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent align="start" className="w-auto p-0">
-                        <Calendar
-                          mode="single"
-                          defaultMonth={field.value}
-                          selected={field.value}
-                          onSelect={field.onChange}
-                          fixedWeeks
-                          weekStartsOn={1}
-                          fromDate={dobFromDate}
-                          toDate={new Date()}
-                          captionLayout="dropdown-buttons"
-                        />
-                      </PopoverContent>
-                    </Popover>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <PasswordInput placeholder="••••••••" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="passwordConfirm"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Confirm password</FormLabel>
-                    <FormControl>
-                      <PasswordInput placeholder="••••••••" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="acceptTerms"
-                render={({ field }) => (
-                  <FormItem>
-                    <div className="flex gap-2 items-center">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <FormLabel>I accept the terms and conditions</FormLabel>
-                    </div>
-                    <FormDescription>
-                      By signing up you agree to our{" "}
-                      <Link
-                        href="/terms"
-                        className="text-primary hover:underline"
-                      >
-                        terms and conditions
-                      </Link>
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  const dobFromDate = new Date();
+                  dobFromDate.setFullYear(dobFromDate.getFullYear() - 120);
+                  return (
+                    <FormItem className="flex flex-col pt-2">
+                      <FormLabel>Date of birth</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              className="normal-case flex justify-between pr-1"
+                            >
+                              {!!field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent align="start" className="w-auto p-0">
+                          <Calendar
+                            mode="single"
+                            defaultMonth={field.value}
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            fixedWeeks
+                            weekStartsOn={1}
+                            startMonth={dobFromDate}
+                            captionLayout="dropdown"
+                            disabled={[
+                              {
+                                after: new Date(),
+                                before: dobFromDate,
+                              },
+                            ]}
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
               />
               <Button type="submit">Sign up</Button>
             </form>
